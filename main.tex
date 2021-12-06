@@ -23,11 +23,13 @@
 
 \title{Summary of GAGA}
 \date{}
+\author{Jujian Zhang}
 
 \begin{document}
 
 \maketitle
 
+\section{Affine schemes of finite type}
 \section{$\mathbb P^n$ as a Group Scheme}
 
 \subsection{Product of Affine Schemes}
@@ -209,4 +211,35 @@ $$ and the third composition is $
   x \arrow[r, "e'"] & 1 \arrow[r] & 1
 \end{tikzcd}
 $. The case for $x^{-1}$ is similar.
+
+\subsection{Affine group scheme acting on affine group scheme}
+\begin{notation}
+In this subsection, assume $\so G = \sr R$ and $\so X=\sr S$ are two affine scheme finite type over $\mathbb C$ and that $\so G$ is a group scheme.
+\end{notation}
+
+\begin{definition}
+  An action of $\so G$ on $\so X$ is given by a homomorphism $a' : S \to \tensorC R S$ such that
+\newline
+\noindent  \begin{minipage}{0.45\linewidth}
+    \begin{equation*}
+      \begin{tikzcd}
+        S \arrow[r, "a'"]\arrow[d, "a'"] & \tensorC R S\arrow[d, "{\tensor\id{a'}}"] \\
+        \tensorC R S \arrow[r, "{\tensor{\mu'}\id}"] & \tensorC R{\tensorC R S},
+      \end{tikzcd}
+    \end{equation*}
+  \end{minipage} and
+  \noindent\begin{minipage}{0.45\linewidth}
+    \begin{equation*}
+      \begin{tikzcd}
+        & \tensorC R S \arrow[d, "{\tensor{e'}\id}"]\\
+        S \arrow[ru, "a'"] \arrow[rd, "\id"] & \tensorC{\mathbb C} S\arrow[d, no head, "\cong"]\\
+        & S
+      \end{tikzcd}
+    \end{equation*}
+  \end{minipage}
+\end{definition}
+
+\subsubsection{Example of action by group scheme}
+
+
 \end{document}
