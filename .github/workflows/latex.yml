@@ -25,7 +25,13 @@ jobs:
           prerelease: false
           release_name: ${{ steps.version.outputs.version }}
           tag_name: ${{ github.ref }}
-          files: main.pdf
         env:
           GITHUB_TOKEN: ${{ github.token }}
+      - name: upload pdf
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_name: main.pdf
 
