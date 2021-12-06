@@ -4,6 +4,7 @@
 *.aux
 *.png
 *.fmt
+*.pdf
 
 _region_.log
 _region_.prv/*
