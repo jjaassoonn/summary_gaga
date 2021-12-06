@@ -336,5 +336,26 @@ $
 \begin{tikzcd}
   S \arrow[r, "a_S'"] & \tensorC R S \arrow[r, "\tensor\id{\alpha_f}"] & \tensorC R {S\left[\frac1f\right]}
 \end{tikzcd}
-$ takes $f\in S$ to an invertible $\tensor r f\in\tensorC R{S\left[\frac1f\right]}$.
+$ takes $f\in S$ to an invertible $\tensor r f\in\tensorC R{S\left[\frac1f\right]}$. Thus this composite
+factors through $\alpha_f:S\to S\left[\frac1f\right]$, i.e.
+$
+\begin{tikzcd}
+  S \arrow[r, "\alpha'_S"]\arrow[d, "\alpha_f"]& \tensorC R S\arrow[d, "\tensor\id{\alpha_f}"] \\
+  {S\left[\frac1f\right]}\arrow[r, dashed, "\exists\alpha'_{S\left[\frac1f\right]}"', description] & \tensorC R{S\left[\frac1f\right]}
+\end{tikzcd}.
+$ Temporarily denote the composite as $c$, then $\alpha'_{S\left[\frac1f\right]}(\frac g{f^n})=c(f)^{-n}c(g)=((\tensor\id{\alpha_f})(\tensor r f))^{-n}c(g)=
+\left(\tensor rf\right)^{-n}c(g)=\left(\tensor{r^{-n}}{\frac1{f^n}}\right)c(g)$.
+Then the following holds:
+\begin{enumerate}
+\item $S\left[\frac1f\right]$ is a $G$-ring.
+  \begin{proof}
+    check commutativity of
+$
+      \begin{tikzcd}
+        {S\left[\frac1f\right]}\arrow[r, "a'"]\arrow[d, "a'"] & \tensorC R {S\left[\frac1f\right]} \arrow[d, "\tensor\id{a'}"]\\
+        {\tensorC R{S\left[\frac1f\right]}}\arrow[r, "\tensor{\mu'}\id"] & \tensorC{\tensorC R R}{S\left[\frac1f\right]}
+      \end{tikzcd}
+$:
+  \end{proof}
+\end{enumerate}
 \end{document}
