@@ -23,7 +23,7 @@ jobs:
           draft: false
           prerelease: false
           release_name: ${{ steps.commit.outputs.long }}
-          tag_name: ${{ steps.commit.outputs.long }}
+          tag_name: ${{ steps.commit.outputs.short }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Release
