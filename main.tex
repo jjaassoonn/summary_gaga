@@ -10,6 +10,7 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
 \newtheorem*{notation}{Notation}
 
 \newcommand{\Spec}{\mathrm{Spec}}
@@ -136,6 +137,7 @@ where (*) is the map $\mathbb C\to R$ giving $R$ the $\mathbb C$-algebra structu
 Consider $\mathbb C$ as the trivial $\mathbb C$-algebra. Let $\mu': \mathbb C\to\tensorC{\mathbb C}{\mathbb C}$ be $\id:\mathbb C\to\mathbb C$ after identifying $\tensorC{\mathbb C}{\mathbb C}\cong\mathbb C$ and $e',\iota':\mathbb C\to\mathbb C$ all be identity on $\mathbb C$. In this case $\so G=\sr{\mathbb C}$ is a space with only one point.
 
 \subsubsection{A Non-trivial Group Scheme}
+\label{sec:hopf-algebra}
 \begin{notation}
 In this subsubsection, $R$ is $\mathbb C[x]$ and localization maps are denoted by $\alpha$ with subscript, for example $\alpha_x : R\to R\left[\frac1x\right]$ localises $x$.
 \end{notation}
@@ -214,7 +216,7 @@ $. The case for $x^{-1}$ is similar.
 
 \subsection{Affine group scheme acting on affine group scheme}
 \begin{notation}
-In this subsection, assume $\so G = \sr R$ and $\so X=\sr S$ are two affine scheme finite type over $\mathbb C$ and that $\so G$ is a group scheme.
+In this subsection, assume $\so G = \sr R$, $\so X=\sr S$ and $\so Y=\srb{S'}$ are affine schemes finite type over $\mathbb C$ and that $\so G$ is a group scheme.
 \end{notation}
 
 \begin{definition}
@@ -239,7 +241,91 @@ In this subsection, assume $\so G = \sr R$ and $\so X=\sr S$ are two affine sche
   \end{minipage}
 \end{definition}
 
+\begin{definition}\label{def:G-morphism}
+  Suppose $\so G$ acts on $\so X$ and $\so Y$. A morphism $\beta : \so X \to \so Y$ of schemes of finite type over $\mathbb C$ is called a $G$-morphism if the following diagram commutes
+  \begin{equation*}
+    \begin{tikzcd}
+      \so G\times \so X \arrow[r, "a_X"] \arrow[d, "{\id\times\beta}"]& \so X \arrow[d, "\beta"]\\
+      \so G\times \so Y \arrow[r, "a_Y"]& \so Y. \\
+    \end{tikzcd}
+  \end{equation*}
+\end{definition}
+
+We can rephrase definition \ref{def:G-morphism} in terms of ring/algebra homomorphism:
+$\beta$ is $\srb{\beta'}$ for a unique $\mathbb C$-algebra homomorphism $\beta':S'\to S$, %TODO : addjustification and reference
+the commutative squre becomes
+\begin{equation*}
+\begin{tikzcd}
+  S' \arrow[r, "{a_{S'}}"]\arrow[d, "\beta'"]& \tensorC{R}{S'} \arrow[d, "{\tensor{\id}{\beta'}}"]\\
+  S \arrow[r, "{a_S}"]& \tensorC{R}{S}.
+\end{tikzcd}
+\end{equation*}
+
+\begin{notation}
+We say that $S$ is a $G$-ring if the group scheme $\so G$ acts on $\sr S$. And $\beta'$ as above is a $G$-homomorphism of $G$-rings.
+\end{notation}
+
+\begin{theorem}
+Let $S$ be a $G$-ring and $f\in S$ such that $f\ne 0$ and $a'(f)=\tensor r f$. Then $r\in R$ is invertible.
+\end{theorem}
+\begin{proof}
+  Since $\so G=\sr R$ is a group scheme, we have the following commutative diagram:
+  \begin{equation*}
+    \begin{tikzcd}[column sep=huge]
+      R \arrow[r, "e'"]\arrow[d, "\mu'"]& \mathbb C\arrow[d, "\rho"] \\
+      {\tensorC R R} \arrow[r, "\tensor r{r'}\mapsto r\iota'(r')"] & R,
+    \end{tikzcd}
+  \end{equation*}
+  where $\rho : \mathbb C\to R$ is the algebra map. We tensor this diagram with $S$:
+    \begin{equation*}
+    \begin{tikzcd}[column sep=0.15\linewidth]
+      \tensorC R S \arrow[r, "{\tensor{e'}\id}"]\arrow[d, "\tensor\mu\id'"]& \tensorC{\mathbb C}S\arrow[d, "{\tensor\rho\id}"] \\
+      {\tensorC{\tensorC R R}S} \arrow[r, "\tensor{(\tensor r{r'}\mapsto r\iota'(r'))}\id"] & \tensorC R S,
+    \end{tikzcd}
+  \end{equation*}
+  so by defniition of action, we get the following commutative diagram:
+  \begin{equation*}
+    \begin{tikzcd}[column sep=7em]
+        &  S \arrow[rd, no head, "\cong"] \\
+      S\arrow[ru, "\id"] \arrow[r, "a'"]\arrow[d, "a'"] & \tensorC R S \arrow[r, "{\tensor{e'}\id}"]\arrow[d, "\tensor\mu\id'"]& \tensorC{\mathbb C}S\arrow[d, "{\tensor\rho\id}"] \\
+      {\tensorC R S} \arrow[r, "\tensor\id{a'}"]& {\tensorC{\tensorC R R}S} \arrow[r, "\tensor{(\tensor r{r'}\mapsto r\iota'(r'))}\id"] & \tensorC R S.
+    \end{tikzcd}
+  \end{equation*}
+  So for $f\in S$, the first composition from top left to bottom right is equal to
+$
+    \begin{tikzcd}
+      f \arrow[d, mapsto]\\
+      \tensor r f\arrow[r, mapsto] & \tensor{\tensor r r} f\arrow[r, mapsto] & \tensor{r\cdot\iota'(r)}f,
+    \end{tikzcd}
+  $
+  and the second composition is equal to
+$
+    \begin{tikzcd}
+      & f \arrow[rd, mapsto]& \\
+      f \arrow[ru, mapsto, "\id"] \arrow[r, mapsto]& \tensor r f & \tensor1f \arrow[d, mapsto]\\
+      & & \tensor1f,
+    \end{tikzcd}
+ $
+  hence $\tensor{r\cdot\iota'(r)}f=\tensor1f$, since $f\ne0$, $r\cdot\iota'(r)=1$, i.e. $r$ is invertible in $R$.
+\end{proof}
+
 \subsubsection{Example of action by group scheme}
-
-
+We consider the example in section \ref{sec:hopf-algebra}. So $R = \mathbb C[t, t^{-1}]$ and $S=\mathbb C[x_0, x_1,\cdots,x_n]$. Consider $\sr R$ acting on $\sr S$ by $a'(x_i)=\tensor{t^{-1}}{x_i}$. Check commutativity:
+$
+\begin{tikzcd}
+  {x_i}\arrow[r, mapsto, "a'"] & {\tensor{t^{-1}}{x_i}} \arrow[d, "{\tensor\id{a'}}"] \\
+  & {\tensor{t^{-1}}{\tensor{t^{-1}}{x_i}}}
+\end{tikzcd}
+$and $
+\begin{tikzcd}
+  {x_i}\arrow[d, mapsto, "a'"] \\
+  {\tensor{t^{-1}}{x_i}}\arrow[r, mapsto, "{\tensor{\mu'}\id}"] & {\tensor{t^{-1}}{\tensor{t^{-1}}{x_i}}}
+\end{tikzcd}
+$; $
+\begin{tikzcd}
+  & {\tensor{t^{-1}}{x_i}}\arrow[d, mapsto, "\tensor{e'}\id"] \\
+  {x_i} \arrow[ru, "a'"] & {\tensor1{x_i}} \arrow[d]\\
+  & {x+i}
+\end{tikzcd}
+$ obvisouly commutes with $\id$.
 \end{document}
