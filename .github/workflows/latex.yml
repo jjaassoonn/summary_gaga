@@ -14,24 +14,22 @@ jobs:
         with:
           name: PDF
           path: main.pdf
-      - name: version
-        run: echo "::set-output name=version::$(./bin/azblogfilter --version)"
-        id: version
+      - name: Get Version
+        uses: battila7/get-version-action@v2.2.1
+        id: get_version
       - name: release
         uses: actions/create-release@v1
         id: create_release
         with:
           draft: false
           prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
+          release_name: ${{ steps.get_version.outputs.version }}
           tag_name: ${{ github.ref }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
-      - name: upload pdf
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_name: main.pdf
+          files: main.pdf
 
