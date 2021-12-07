@@ -325,7 +325,7 @@ $; $
 \begin{tikzcd}
   & {\tensor{t^{-1}}{x_i}}\arrow[d, mapsto, "\tensor{e'}\id"] \\
   {x_i} \arrow[ru, "a'"] & {\tensor1{x_i}} \arrow[d]\\
-  & {x+i}
+  & {x_i}
 \end{tikzcd}
 $ obvisouly commutes with $\id$.
 
@@ -340,10 +340,17 @@ $ takes $f\in S$ to an invertible $\tensor r f\in\tensorC R{S\left[\frac1f\right
 factors through $\alpha_f:S\to S\left[\frac1f\right]$, i.e.
 $
 \begin{tikzcd}
-  S \arrow[r, "\alpha'_S"]\arrow[d, "\alpha_f"]& \tensorC R S\arrow[d, "\tensor\id{\alpha_f}"] \\
-  {S\left[\frac1f\right]}\arrow[r, dashed, "\exists\alpha'_{S\left[\frac1f\right]}"', description] & \tensorC R{S\left[\frac1f\right]}
+  S \arrow[r, "a'_S"]\arrow[d, "\alpha_f"]& \tensorC R S\arrow[d, "\tensor\id{\alpha_f}"] \\
+  {S\left[\frac1f\right]}\arrow[r, dashed, "\exists a'_{S\left[\frac1f\right]}"', description] & \tensorC R{S\left[\frac1f\right]}
 \end{tikzcd}.
-$ Temporarily denote the composite as $c$, then $\alpha'_{S\left[\frac1f\right]}(\frac g{f^n})=c(f)^{-n}c(g)=((\tensor\id{\alpha_f})(\tensor r f))^{-n}c(g)=
+$
+
+$\begin{tikzcd}
+  S \arrow[r, "a'_S"]\arrow[d, "\alpha_f"]& \tensorC R S\arrow[d, "\tensor\id{\alpha_f}"] \arrow[r, "\tensor\id{a'_S}"]& \tensorC{\tensorC R R} S\arrow[d, "\tensor{\tensor\id\id}{\alpha_f}"]\\
+  {S\left[\frac1f\right]}\arrow[r, dashed, "\exists a'_{S\left[\frac1f\right]}"', description] & \tensorC R{S\left[\frac1f\right]} \arrow[r, "\tensor{\mu'}{\id}"]& \tensorC{\tensorC R R}{S\left[\frac1f\right]}
+\end{tikzcd}$ is also commutative because $S$ is a $G$-ring. 
+
+Temporarily denote the composite as $c$, then $a'_{S\left[\frac1f\right]}(\frac g{f^n})=c(f)^{-n}c(g)=((\tensor\id{\alpha_f})(\tensor r f))^{-n}c(g)=
 \left(\tensor rf\right)^{-n}c(g)=\left(\tensor{r^{-n}}{\frac1{f^n}}\right)c(g)$.
 Then the following holds:
 \begin{enumerate}
@@ -355,7 +362,7 @@ $
         {S\left[\frac1f\right]}\arrow[r, "a'"]\arrow[d, "a'"] & \tensorC R {S\left[\frac1f\right]} \arrow[d, "\tensor\id{a'}"]\\
         {\tensorC R{S\left[\frac1f\right]}}\arrow[r, "\tensor{\mu'}\id"] & \tensorC{\tensorC R R}{S\left[\frac1f\right]}
       \end{tikzcd}
-$:
+$: we want $(\tensor\id{a'})\left(\left(\tensor{r^{-n}}{\frac1{f^n}}\right)c(g)\right)=(\tensor{\mu'}\id)\left(\left(\tensor{r^{-n}}{\frac1{f^n}}\right)c(g)\right)$. Left hand side is $(\tensor\id{a'})(\tensor{r^{-n}}{\frac1{f^n}})\cdot(\tensor\id{a'})(c(g))=\left(\tensor{r^{-n}}{\tensor{r^{-n}}{\frac1{f^n}}}\right)(\tensor\id{a'})(c(g))$
   \end{proof}
 \end{enumerate}
 \end{document}
