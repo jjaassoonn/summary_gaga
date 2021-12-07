@@ -37,12 +37,14 @@ jobs:
           draft: false
           prerelease: false
           release_name: ${{ steps.commit.outputs.long }}
-          tag_name: ${{ steps.commit.outputs.short }}
+          tag_name: ${{ github.ref }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: upload linux artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
-          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
-          files: main.pdf
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_name: main.pdf
 
